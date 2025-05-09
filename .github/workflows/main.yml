@@ -33,10 +33,10 @@ jobs:
       run: |
         git config --global user.name "istiabudi"
         git config --global user.email "istiabudi@example.com"
-        git add preprocessing/energy_preprocessing.csv
+        git add preprocessing/energy_preprocessed.csv
     
         if git diff --cached --quiet; then
-          echo "Tidak ada perubahan pada energy_preprocessing.csv"
+          echo "Tidak ada perubahan pada energy_preprocessed.csv"
         else
           git commit -m "Update energy dataset"
           git push
