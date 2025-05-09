@@ -32,9 +32,13 @@ jobs:
     - name: Commit and Push Preprocessed Data
       run: |
         git config --global user.name "istiabudi"
-        git config --global user.email "istiabudi@gmail.com"
-        git add preprocessing/energy_preprocessed.csv
-        git commit -m "Add energy dataset"
-        git push
+        git config --global user.email "istiabudi@example.com"
+        git add preprocessing/energy_preprocessing.csv
+    
+        if git diff --cached --quiet; then
+          echo "Tidak ada perubahan pada energy_preprocessing.csv"
+        else
+          git commit -m "Update energy dataset"
+          git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
