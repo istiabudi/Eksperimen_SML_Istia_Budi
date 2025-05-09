@@ -11,34 +11,34 @@ on:
 jobs:
   preprocess:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.12.7
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.12.7
 
-    - name: Install Dependencies
-      run: |
-        pip install pandas scikit-learn
+      - name: Install Dependencies
+        run: |
+          pip install pandas scikit-learn
 
-    - name: Run Preprocessing Script
-      run: |
-        python preprocessing/automate_istia-budi.py
+      - name: Run Preprocessing Script
+        run: |
+          python preprocessing/automate_istia-budi.py
 
-    - name: Commit and Push Preprocessed Data
-      run: |
-        git config --global user.name "istiabudi"
-        git config --global user.email "istiabudi@example.com"
-        git add preprocessing/energy_preprocessed.csv
-    
-        if git diff --cached --quiet; then
-          echo "Tidak ada perubahan pada energy_preprocessed.csv"
-        else
-          git commit -m "Update energy dataset"
-          git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit and Push Preprocessed Data
+        run: |
+          git config --global user.name "istiabudi"
+          git config --global user.email "istiabudi@example.com"
+          git add preprocessing/energy_preprocessing.csv
+
+          if git diff --cached --quiet; then
+            echo "Tidak ada perubahan pada energy_preprocessing.csv"
+          else
+            git commit -m "Update energy dataset"
+            git push
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
